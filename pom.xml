@@ -4,26 +4,26 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>be.geertvanheusden</groupId>
+	<groupId>br.gov.lexml</groupId>
 	<artifactId>rancher-hazelcast-discovery-spi</artifactId>
-	<version>1.0.1</version>
-
+	<version>1.0.1-hazelcast4_1-SNAPSHOT</version>
+	<scm>
+		<url>https://github.com/lexml/${project.artifactId}</url>
+		<developerConnection>scm:git:https://github.com/lexml/${project.artifactId}.git</developerConnection>
+		<connection>scm:git:https://github.com/lexml/${project.artifactId}.git</connection>
+		<tag>1.0.1-hazelcast4_1</tag>
+	</scm>
 	<distributionManagement>
 		<repository>
-			<id>nexus</id>
-			<layout>default</layout>
-			<url>https://repo.aviovision.com/repository/maven-releases/</url>
+			<id>bintray-lexml</id>
+			<name>Bintray ${project.artifactId} Repository</name>
+			<url>https://api.bintray.com/maven/lexml/lexml/lexml-parser-projeto-lei/;publish=1</url>
 		</repository>
-		<snapshotRepository>
-			<id>nexus</id>
-			<layout>default</layout>
-			<url>https://repo.aviovision.com/repository/maven-snapshots/</url>
-		</snapshotRepository>
 	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hazelcast.version>3.12.4</hazelcast.version>
+		<hazelcast.version>4.1</hazelcast.version>
 		<jodd.version>4.3.1</jodd.version>
 		<junit.version>4.12</junit.version>
 		<wiremock.version>2.16.0</wiremock.version>
@@ -67,7 +67,33 @@
 			<version>${slf4j-simple.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-deploy-plugin</artifactId>
+			<version>2.7</version>
+		</plugin>
 
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.5.2</version>
+			<configuration>
+				<detail>true</detail>
+				<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+				<tagNameFormat>@{project.version}</tagNameFormat>
+			</configuration>
+			<executions>
+				<execution>
+					<goals>
+						<goal>perform</goal>
+					</goals>
+					<configuration>
+						<goals>package</goals>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
 	</dependencies>
 
 	<build>
