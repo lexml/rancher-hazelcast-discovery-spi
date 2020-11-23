@@ -4,7 +4,7 @@
 
 	<groupId>br.gov.lexml</groupId>
 	<artifactId>rancher-hazelcast-discovery-spi</artifactId>
-	<version>1.0.1-hazelcast4_1</version>
+	<version>1.0.2-hazelcast4_1-SNAPSHOT</version>
 	<scm>
 		<url>https://github.com/lexml/${project.artifactId}</url>
 		<developerConnection>scm:git:https://github.com/lexml/${project.artifactId}.git</developerConnection>
